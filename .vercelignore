@@ -1,0 +1,13 @@
+.git
+.next
+node_modules
+.env*
+dist
+docs
+tests
+supabase
+.openai
+.sites-local
+.local
+coverage
+*.tsbuildinfo
