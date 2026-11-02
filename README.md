@@ -1,6 +1,18 @@
 # Jokers of Aggieland
 
-Next.js 16 / React 19 / TypeScript website and persistent poker wait-list. The marketing site keeps the approved maroon design and verified Jokers content. The player app uses an original warm-white check-in desk and private queue ticket.
+A poker club website and persistent player waitlist for Jokers of Aggieland. Players find staff-confirmed games and follow a private queue ticket; staff manage arrivals, seat offers, and club operations.
+
+Built with Next.js 16, React 19, TypeScript, and PostgreSQL. Vercel hosts the app; Supabase provides managed database and staff authentication.
+
+## Features
+
+- Public club information and game discovery.
+- Device-bound guest tickets with queue updates and optional sound while the website is open.
+- Staff check-in, available-seat offers, and queue expiration.
+- Role-based controls for games, rules, staff accounts, and audit records.
+- Database-backed state with concurrency and idempotency safeguards.
+
+[Deployment](docs/deployment.md) · [Staff guide](docs/staff-guide.md) · [Operations](docs/operations.md)
 
 ## Routes
 
@@ -12,9 +24,23 @@ Next.js 16 / React 19 / TypeScript website and persistent poker wait-list. The m
 
 ## Local development
 
-Use Node 24 and PostgreSQL 15+. Run `npm ci`, copy `.env.example` to `.env.local`, and configure the database connection. Set `DATABASE_SSL=false` only for a trusted local database. Keep credentials out of Git and chat.
+Use Node 24 and PostgreSQL 15+.
 
-Run `npm run db:migrate`, then `npm run dev`. Open http://127.0.0.1:3000. Operational state is in PostgreSQL. An unconfigured deployment shows setup-in-progress and accepts no joins.
+```sh
+git clone https://github.com/pradyumnagnoor1/aggieland-poker.git
+cd aggieland-poker
+npm ci
+cp .env.example .env.local
+```
+
+Configure the database connection in `.env.local`. Set `DATABASE_SSL=false` only for a trusted local database. Keep credentials out of Git and chat.
+
+```sh
+npm run db:migrate
+npm run dev
+```
+
+Open http://127.0.0.1:3000. Operational state is in PostgreSQL. An unconfigured deployment shows setup-in-progress and accepts no joins.
 
 For a clearly labeled **local synthetic demonstration only**, set `DEMO_MODE=true` and `LOCAL_DEMO_PASSWORD` to a local-only password, run `npm run db:demo`, then sign in as `owner@jokers.local`. This login is blocked in production and on Vercel. Builds never seed demo players or games.
 
